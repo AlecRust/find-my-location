@@ -293,15 +293,10 @@ module.exports = function (grunt) {
             options: {
                 dir: 'dist',
                 branch: 'gh-pages',
+                remote: 'git@github.com:AlecRust/find-my-location.git',
                 commit: true,
                 push: true,
                 message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
-            },
-            pages: {
-                options: {
-                    remote: 'git@github.com:AlecRust/find-my-location.git',
-                    branch: 'gh-pages'
-                }
             }
         },
 
