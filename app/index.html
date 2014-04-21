@@ -20,7 +20,7 @@
         <!-- endbuild -->
       
         <!--
-        Include the maps javascript with sensor=true because this code is using a
+        Include the maps JavaScript with sensor=true because this code is using a
         sensor (a GPS locator) to determine the user's location.
         -->
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
@@ -31,6 +31,19 @@
         <!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+        
+        <h1 class="visuallyhidden">Find My Location</h1>
+        <p class="visuallyhidden">Uses the HTML5 Geolocation API to plot your location on a map. <a href="https://github.com/AlecRust/find-my-location">View on GitHub</a></p>
+        
+        <div class="loading-message">
+            <span class="loading-message-letter">L</span>
+            <span class="loading-message-letter">O</span>
+            <span class="loading-message-letter">A</span>
+            <span class="loading-message-letter">D</span>
+            <span class="loading-message-letter">I</span>
+            <span class="loading-message-letter">N</span>
+            <span class="loading-message-letter">G</span>
+        </div>
 
         <div id="location-map-canvas"></div>
 

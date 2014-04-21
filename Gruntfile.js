@@ -125,7 +125,7 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= config.app %>/styles',
-                    src: ['main.scss'],
+                    src: ['*.scss'],
                     dest: '.tmp/styles',
                     ext: '.css'
                 }]
@@ -134,7 +134,7 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= config.app %>/styles',
-                    src: ['main.scss'],
+                    src: ['*.scss'],
                     dest: '.tmp/styles',
                     ext: '.css'
                 }]

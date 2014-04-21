@@ -18,6 +18,10 @@ function initialize() {
     // Try HTML5 geolocation
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
+            
+            // Remove loading message
+            $('.loading-message').remove();
+            
             var pos = new google.maps.LatLng(position.coords.latitude,
                 position.coords.longitude);
 
@@ -32,14 +36,12 @@ function initialize() {
 
             map.setCenter(pos);
 
-            // Add some custom map styles
-            map.set('styles', [
-                {
-                    stylers: [
-                        { hue: '#005b41' }
-                    ]
-                }
-            ]);
+            // Set map hue colour
+            map.set('styles', [{
+                stylers: [
+                    { hue: '#005b41' }
+                ]
+            }]);
 
             // Open info window on marker click
             google.maps.event.addListener(marker, 'click', function () {

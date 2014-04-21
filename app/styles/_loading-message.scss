@@ -1,0 +1,51 @@
+//
+// Loading message
+// Originally from: http://codepen.io/Pesca/pen/kgLth
+// --------------------------------------------------
+
+.loading-message {
+  cursor: default;
+  font-size: 3em;
+  height: 100%;
+}
+
+.loading-message-letter {
+  position: relative;
+  top: calc(50% - 60px);
+  text-shadow: 0px 0px 5px #333;
+  
+  &:nth-child(1) {
+    animation: fade 4s infinite 200ms;
+  }
+  
+  &:nth-child(2) {
+    animation: fade 4s infinite 400ms;
+  }
+  
+  &:nth-child(3) {
+    animation: fade 4s infinite 600ms;
+  }
+  
+  &:nth-child(4) {
+    animation: fade 4s infinite 800ms;
+  }
+  
+  &:nth-child(5) {
+    animation: fade 4s infinite 1000ms;
+  }
+  
+  &:nth-child(6) {
+    animation: fade 4s infinite 1200ms;
+  }
+  
+  &:nth-child(7) {
+    animation: fade 4s infinite 1400ms;
+  }
+}
+
+@keyframes fade {
+  
+  50% {
+    opacity: 0.04;
+  }
+}
