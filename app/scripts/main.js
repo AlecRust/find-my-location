@@ -11,7 +11,10 @@ var map,
 function initialize() {
     var mapOptions = {
         backgroundColor: '#005b41',
-        zoom: 16
+        zoom: 8,
+        mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+        },
     };
     map = new google.maps.Map(document.getElementById('location-map-canvas'),
         mapOptions);
@@ -47,6 +50,8 @@ function initialize() {
             // Open info window on marker click
             google.maps.event.addListener(marker, 'click', function () {
                 infowindow.open(map, marker);
+                map.setZoom(18);
+                map.setCenter(marker.getPosition());
             });
         }, function () {
             handleNoGeolocation(true);
