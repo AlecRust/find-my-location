@@ -92,7 +92,9 @@ module.exports = function (grunt) {
                     src: [
                         '.tmp',
                         '<%= config.dist %>/*',
-                        '!<%= config.dist %>/.git*'
+                        '!<%= config.dist %>/.git*',
+                        '!<%= config.dist %>/README.md',
+                        '!<%= config.dist %>/apple-touch-icon.png'
                     ]
                 }]
             },
@@ -174,7 +176,8 @@ module.exports = function (grunt) {
                         '<%= config.dist %>/styles/{,*/}*.css',
                         '<%= config.dist %>/images/{,*/}*.*',
                         '<%= config.dist %>/styles/fonts/{,*/}*.*',
-                        '<%= config.dist %>/*.{ico,png}'
+                        '<%= config.dist %>/*.{ico,png}',
+                        '!<%= config.dist %>/apple-touch-icon.png'
                     ]
                 }
             }
