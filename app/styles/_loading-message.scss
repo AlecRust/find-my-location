@@ -10,6 +10,8 @@
 }
 
 .loading-message-letter {
+  opacity: 0.9;
+  text-transform: uppercase;
   position: relative;
   top: calc(50% - 60px);
   text-shadow: 0px 0px 5px #333;
