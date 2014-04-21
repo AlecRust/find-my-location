@@ -32,7 +32,7 @@ function initialize() {
 
             map.setCenter(pos);
 
-            // Add some custom map stying
+            // Add some custom map styles
             map.set('styles', [
                 {
                     stylers: [
