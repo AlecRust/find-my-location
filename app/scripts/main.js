@@ -7,6 +7,7 @@
 var map,
     google;
 
+// Initialise Google Map
 function initialize() {
     var mapOptions = {
         backgroundColor: '#005b41',

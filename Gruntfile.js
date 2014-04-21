@@ -93,8 +93,7 @@ module.exports = function (grunt) {
                         '.tmp',
                         '<%= config.dist %>/*',
                         '!<%= config.dist %>/.git*',
-                        '!<%= config.dist %>/README.md',
-                        '!<%= config.dist %>/apple-touch-icon.png'
+                        '!<%= config.dist %>/README.md'
                     ]
                 }]
             },
