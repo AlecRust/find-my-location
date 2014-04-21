@@ -312,6 +312,23 @@ module.exports = function (grunt) {
             }
         },
 
+        // Sets up grunt-build-control
+        buildcontrol: {
+            options: {
+                dir: 'dist',
+                branch: 'gh-pages',
+                commit: true,
+                push: true,
+                message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+            },
+            pages: {
+                options: {
+                    remote: 'git@github.com:AlecRust/find-my-location.git',
+                    branch: 'gh-pages'
+                }
+            }
+        },
+
         // Run some tasks in parallel to speed up build process
         concurrent: {
             server: [
