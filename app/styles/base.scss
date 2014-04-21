@@ -1,18 +1,28 @@
+//
+// Base styles
+// --------------------------------------------------
+
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333;
   background-color: $brand-primary;
 }
 
-html, body, #map-canvas {
+html, body, #location-map-canvas {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
+// Browse Happy prompt
 .browsehappy {
+  text-align: center;
+  color: #fff;
+  background-color: $brand-primary;
   margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
   padding: 0.2em 0;
+  
+  a {
+    color: #fff;
+  }
 }

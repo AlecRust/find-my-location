@@ -9,9 +9,10 @@ var map,
 
 function initialize() {
     var mapOptions = {
-        zoom: 6
+        backgroundColor: '#005b41',
+        zoom: 16
     };
-    map = new google.maps.Map(document.getElementById('map-canvas'),
+    map = new google.maps.Map(document.getElementById('location-map-canvas'),
         mapOptions);
 
     // Try HTML5 geolocation
@@ -21,12 +22,29 @@ function initialize() {
                 position.coords.longitude);
 
             var infowindow = new google.maps.InfoWindow({
-                map: map,
-                position: pos,
                 content: 'Here you are!'
             });
 
+            var marker = new google.maps.Marker({
+                map: map,
+                position: pos
+            });
+
             map.setCenter(pos);
+
+            // Add some custom map stying
+            map.set('styles', [
+                {
+                    stylers: [
+                        { hue: '#005b41' }
+                    ]
+                }
+            ]);
+
+            // Open info window on marker click
+            google.maps.event.addListener(marker, 'click', function () {
+                infowindow.open(map, marker);
+            });
         }, function () {
             handleNoGeolocation(true);
         });
@@ -36,13 +54,14 @@ function initialize() {
     }
 }
 
+// Show error message info window
 function handleNoGeolocation(errorFlag) {
     var errorContent;
     
     if (errorFlag) {
-        errorContent = 'Error: The Geolocation service failed.';
+        errorContent = 'Allow location information to display it on this map';
     } else {
-        errorContent = 'Error: Your browser doesn\'t support geolocation.';
+        errorContent = 'Your browser doesn\'t support geolocation :(';
     }
 
     var options = {
