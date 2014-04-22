@@ -23,8 +23,8 @@ function initialize() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             
-            // Remove loading message
-            $('.loading-message').remove();
+            // Remove loading message and hidden map intro from DOM
+            $('.loading-message, .location-map-intro').remove();
             
             var pos = new google.maps.LatLng(position.coords.latitude,
                 position.coords.longitude);

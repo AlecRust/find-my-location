@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js">
+<html>
     <head>
         <meta charset="utf-8">
         <title>Find My Location</title>
@@ -23,8 +23,14 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         
-        <h1 class="visuallyhidden">Find My Location</h1>
-        <p class="visuallyhidden">Uses the HTML5 Geolocation API to plot your location on a map. <a href="https://github.com/AlecRust/find-my-location">View on GitHub</a></p>
+        <div class="location-map-intro visuallyhidden">
+            <h1>Find My Location</h1>
+            <p>Uses the HTML5 Geolocation API to plot your location on a map. <a href="https://github.com/AlecRust/find-my-location">View on GitHub</a></p>
+        </div>
+        
+        <noscript>
+            <p class="no-js-alert">You'll need JavaScript enabled for this site.</p>
+        </noscript>
         
         <div class="loading-message">
             <span class="loading-message-letter">L</span>

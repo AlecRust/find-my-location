@@ -23,3 +23,13 @@ html, body {
     color: #fff;
   }
 }
+
+// No JS alert
+.no-js-alert {
+  border: 1px solid #faebcc;
+  font-size: 0.8em;
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  margin: 0;
+  padding: 10px;
+}
