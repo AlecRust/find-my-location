@@ -14,7 +14,7 @@ function initialize() {
         zoom: 8,
         mapTypeControlOptions: {
             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-        },
+        }
     };
     map = new google.maps.Map(document.getElementById('location-map-canvas'),
         mapOptions);
@@ -26,7 +26,7 @@ function initialize() {
             // Remove loading message and hidden map intro from DOM
             $('.loading-message, .location-map-intro').remove();
             
-            var pos = new google.maps.LatLng(position.coords.latitude,
+            var userPosition = new google.maps.LatLng(position.coords.latitude,
                 position.coords.longitude);
 
             var infowindow = new google.maps.InfoWindow({
@@ -35,10 +35,11 @@ function initialize() {
 
             var marker = new google.maps.Marker({
                 map: map,
-                position: pos
+                position: userPosition,
+                title: 'Click to zoom'
             });
 
-            map.setCenter(pos);
+            map.setCenter(userPosition);
 
             // Set map hue colour
             map.set('styles', [{
@@ -50,9 +51,10 @@ function initialize() {
             // Open info window on marker click
             google.maps.event.addListener(marker, 'click', function () {
                 infowindow.open(map, marker);
-                map.setZoom(18);
                 map.setCenter(marker.getPosition());
+                map.setZoom(18);
             });
+            
         }, function () {
             handleNoGeolocation(true);
         });
