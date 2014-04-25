@@ -93,6 +93,7 @@ module.exports = function (grunt) {
                         '.tmp',
                         '<%= config.dist %>/*',
                         '!<%= config.dist %>/.git*',
+                        '!<%= config.dist %>/CNAME',
                         '!<%= config.dist %>/README.md'
                     ]
                 }]
