@@ -29,21 +29,14 @@ function initialize() {
 
             // Configure info window
             var infoWindow = new google.maps.InfoWindow({
-                content: infoWindowContent()
+                content: '<div class="info-window">' +
+                    '<h2>Here you are!</h2>' +
+                    '<p><b>Lat:</b> ' + userPosition.lat() + '</p>' +
+                    '<p><b>Lng:</b> ' + userPosition.lng() + '</p>' +
+                    '</div>'
             });
 
-            // Create info window content
-            function infoWindowContent() {
-                
-                return [
-                    '<div class="info-window">',
-                    '<h2>Here you are!</h2>',
-                    '<p><b>Lat:</b> ' + userPosition.lat() + '</p>',
-                    '<p><b>Lng:</b> ' + userPosition.lng() + '</p>',
-                    '</div>'
-                ].join('');
-            }
-
+            // Configure map marker
             var marker = new google.maps.Marker({
                 map: map,
                 position: userPosition,
@@ -87,14 +80,14 @@ function handleNoGeolocation(errorFlag) {
         errorContent = 'Your browser doesn\'t support Geolocation';
     }
 
-    var options = {
+    var mapOptions = {
         map: map,
         position: new google.maps.LatLng(60, 105),
         content: errorContent
     };
 
-    var infoWindow = new google.maps.InfoWindow(options);
-    map.setCenter(options.position);
+    var infoWindow = new google.maps.InfoWindow(mapOptions);
+    map.setCenter(mapOptions.position);
 }
 
 // Asynchronously load Google Maps API
