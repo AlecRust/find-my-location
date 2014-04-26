@@ -62,7 +62,7 @@ function initialize() {
             // Open and zoom to info window on marker click
             google.maps.event.addListener(marker, 'click', function () {
                 infoWindow.open(map, marker);
-                map.setCenter(marker.getPosition());
+                map.setCenter(userPosition);
                 map.setZoom(18);
             });
             
