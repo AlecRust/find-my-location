@@ -3,7 +3,6 @@
 // --------------------------------------------------
 
 html, body {
-  text-align: center;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #fff;
   background-color: $brand-primary;
@@ -15,6 +14,7 @@ html, body {
 
 // Browse Happy prompt
 .browsehappy {
+  text-align: center;
   background-color: $brand-primary;
   margin: 0.2em 0;
   padding: 0.2em 0;

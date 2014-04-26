@@ -1,0 +1,19 @@
+//
+// Info window
+// --------------------------------------------------
+
+.info-window {
+  width: 235px;
+  height: 54px;
+  overflow: auto; // Prevent scrollbars
+  text-align: center;
+  
+  h2 {
+    font-style: 1.1em;
+    margin: 0 0 5px;
+  }
+  
+  p {
+    margin: 0;
+  }
+}

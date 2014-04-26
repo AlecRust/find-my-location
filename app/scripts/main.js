@@ -1,5 +1,5 @@
 /*!
- * Basic usage of the HTML5 Geolocation API to plot users' location on a map
+ * Basic usage of the HTML5 Geolocation API to plot user location on a map
  */
 
 'use strict';
@@ -16,8 +16,7 @@ function initialize() {
             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
         }
     };
-    map = new google.maps.Map(document.getElementById('location-map-canvas'),
-        mapOptions);
+    map = new google.maps.Map(document.getElementById('location-map-canvas'), mapOptions);
 
     // Try HTML5 geolocation
     if (navigator.geolocation) {
@@ -26,12 +25,23 @@ function initialize() {
             // Remove loading message and hidden map intro from DOM
             $('.loading-message, .location-map-intro').remove();
             
-            var userPosition = new google.maps.LatLng(position.coords.latitude,
-                position.coords.longitude);
+            var userPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-            var infowindow = new google.maps.InfoWindow({
-                content: 'Here you are!'
+            // Configure info window
+            var infoWindow = new google.maps.InfoWindow({
+                content: infoWindowContent()
             });
+
+            // Create info window content
+            function infoWindowContent() {
+                
+                return [
+                    '<div class="info-window">',
+                    '<h2>Here you are!</h2>',
+                    '<p>' + userPosition.lat() + ' , ' + userPosition.lng() + '</p>',
+                    '</div>'
+                ].join('');
+            }
 
             var marker = new google.maps.Marker({
                 map: map,
@@ -39,6 +49,7 @@ function initialize() {
                 title: 'Click to zoom'
             });
 
+            // Set map center to user position
             map.setCenter(userPosition);
 
             // Set map hue colour
@@ -48,14 +59,15 @@ function initialize() {
                 ]
             }]);
 
-            // Open info window on marker click
+            // Open and zoom to info window on marker click
             google.maps.event.addListener(marker, 'click', function () {
-                infowindow.open(map, marker);
+                infoWindow.open(map, marker);
                 map.setCenter(marker.getPosition());
                 map.setZoom(18);
             });
             
         }, function () {
+            // Browser supports Geolocation, but user declined
             handleNoGeolocation(true);
         });
     } else {
@@ -71,7 +83,7 @@ function handleNoGeolocation(errorFlag) {
     if (errorFlag) {
         errorContent = 'Allow location information to display it on this map';
     } else {
-        errorContent = 'Your browser doesn\'t support geolocation :(';
+        errorContent = 'Your browser doesn\'t support Geolocation';
     }
 
     var options = {
@@ -80,16 +92,14 @@ function handleNoGeolocation(errorFlag) {
         content: errorContent
     };
 
-    var infowindow = new google.maps.InfoWindow(options);
+    var infoWindow = new google.maps.InfoWindow(options);
     map.setCenter(options.position);
 }
 
 // Asynchronously load Google Maps API
 function loadScript() {
     var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&' +
-        'callback=initialize';
+    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&' + 'callback=initialize';
     document.body.appendChild(script);
 }
 
