@@ -1,4 +1,4 @@
-# Apache Server Configs v2.2.0 | MIT License
+# Apache Server Configs v2.3.0 | MIT License
 # https://github.com/h5bp/server-configs-apache
 
 # (!) Using `.htaccess` files slows down Apache, therefore, if you have access
@@ -10,10 +10,10 @@
 # ##############################################################################
 
 # ------------------------------------------------------------------------------
-# | Cross-domain AJAX requests                                                 |
+# | Cross-domain requests                                                      |
 # ------------------------------------------------------------------------------
 
-# Allow cross-origin AJAX requests.
+# Allow cross-origin requests.
 # http://code.google.com/p/html5security/wiki/CrossOriginRequestSecurity
 # http://enable-cors.org/
 
@@ -156,7 +156,7 @@ ErrorDocument 404 /404.html
 
     # Make SVGZ fonts work on the iPad.
     # https://twitter.com/FontSquirrel/status/14855840545
-    AddType     image/svg+xml                           svgz
+    AddType     image/svg+xml                           svg svgz
     AddEncoding gzip                                    svgz
 
   # Other
@@ -167,7 +167,7 @@ ErrorDocument 404 /404.html
     AddType application/x-xpinstall                     xpi
     AddType application/xml                             atom rdf rss xml
     AddType image/webp                                  webp
-    AddType image/x-icon                                cur
+    AddType image/x-icon                                cur ico
     AddType text/cache-manifest                         appcache manifest
     AddType text/vtt                                    vtt
     AddType text/x-component                            htc
@@ -378,22 +378,24 @@ AddDefaultCharset utf-8
 </FilesMatch>
 
 # ------------------------------------------------------------------------------
-# | Reducing MIME-type security risks                                          |
+# | Reducing MIME type security risks                                          |
 # ------------------------------------------------------------------------------
 
 # Prevent some browsers from MIME-sniffing the response.
 
-# This reduces exposure to drive-by download attacks and should be enable
-# especially if the web server is serving user uploaded content, content
-# that could potentially be treated by the browser as executable.
+# This reduces exposure to drive-by download attacks and cross-origin data
+# leaks, and should be left uncommented, especially if the web server is
+# serving user-uploaded content or content that could potentially be treated
+# as executable by the browser.
 
+# http://www.slideshare.net/hasegawayosuke/owasp-hasegawa
 # http://blogs.msdn.com/b/ie/archive/2008/07/02/ie8-security-part-v-comprehensive-protection.aspx
 # http://msdn.microsoft.com/en-us/library/ie/gg622941.aspx
 # http://mimesniff.spec.whatwg.org/
 
-# <IfModule mod_headers.c>
-#     Header set X-Content-Type-Options "nosniff"
-# </IfModule>
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+</IfModule>
 
 # ------------------------------------------------------------------------------
 # | Reflected Cross-Site Scripting (XSS) attacks                               |
