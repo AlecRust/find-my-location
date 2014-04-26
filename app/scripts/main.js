@@ -38,7 +38,7 @@ function initialize() {
                 return [
                     '<div class="info-window">',
                     '<h2>Here you are!</h2>',
-                    '<p>' + userPosition.lat() + ' , ' + userPosition.lng() + '</p>',
+                    '<p>' + userPosition.lat() + ', ' + userPosition.lng() + '</p>',
                     '</div>'
                 ].join('');
             }
