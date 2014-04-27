@@ -200,18 +200,6 @@ module.exports = function (grunt) {
             css: ['<%= config.dist %>/styles/{,*/}*.css']
         },
 
-        // The following *-min tasks produce minified files in the dist folder
-        imagemin: {
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: '<%= config.app %>/images',
-                    src: '{,*/}*.{gif,jpeg,jpg,png}',
-                    dest: '<%= config.dist %>/images'
-                }]
-            }
-        },
-
         htmlmin: {
             dist: {
                 options: {
@@ -283,8 +271,7 @@ module.exports = function (grunt) {
             ],
             dist: [
                 'sass',
-                'copy:styles',
-                'imagemin'
+                'copy:styles'
             ]
         }
     });
