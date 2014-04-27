@@ -17,7 +17,7 @@ function initialize() {
         mapTypeId: google.maps.MapTypeId.HYBRID
     };
     
-    map = new google.maps.Map(document.getElementById('location-map-canvas'), mapOptions);
+    map = new google.maps.Map(document.getElementById('location-map'), mapOptions);
     geocoder = new google.maps.Geocoder();
 
     // Try HTML5 geolocation
@@ -26,8 +26,9 @@ function initialize() {
         // Browser supports Geolocation
         navigator.geolocation.getCurrentPosition(function (position) {
             
-            // Remove loading message and hidden map intro from DOM
-            $('.loading-message, .location-map-intro').remove();
+            // Remove loading message
+            var loadingMessage = document.getElementById('loading-message');
+            loadingMessage.parentNode.removeChild(loadingMessage);
             
             // Get lat/lng of user
             var userPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -106,8 +107,9 @@ function handleNoGeolocation(errorFlag) {
     var errorContent,
         defaultLatLng = new google.maps.LatLng(52, -1);
 
-    // Remove loading message and hidden map intro from DOM
-    $('.loading-message, .location-map-intro').remove();
+    // Remove loading message
+    var loadingMessage = document.getElementById('loading-message');
+    loadingMessage.parentNode.removeChild(loadingMessage);
     
     if (errorFlag) {
         errorContent = 'Please allow location information';
