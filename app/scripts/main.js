@@ -68,22 +68,19 @@ function initialize() {
 
             // Reverse Geocode lat/lng
             geocoder.geocode({ 'latLng': userPosition }, function (results, status) {
-                var $infoWindow = $('.info-window');
                 var $infoWindowContent = $('.info-window dl');
+                var userAddress;
                 var userAddressFormatted = results[0].formatted_address;
                 if (status === google.maps.GeocoderStatus.OK) {
-                    // Append address to info window
-                    $infoWindowContent.append('<dt>Adr:</dt><dd>' + userAddressFormatted + '</dd>');
-                    
-                    // Output address to console
+                    userAddress = userAddressFormatted;
                     console.log('Address: ' + userAddressFormatted);
                 } else {
-                    // Append error message to info window
-                    $infoWindow.append('<p class="error">Address not available</b></p>');
-                    
-                    // Output geocode failure status to console
+                    userAddress = '<span class="error">Street address not available</span>';
                     console.log('Geocode failed: ' + status);
                 }
+                
+                // Append address line to info window
+                $infoWindowContent.append('<dt>Adr:</dt><dd>' + userAddress + '</dd>');
             });
 
             // Zoom to marker on click

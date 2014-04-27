@@ -3,6 +3,7 @@
 // --------------------------------------------------
 
 .info-window {
+  min-height: 54px; // Ensure height is available for injected address line
   
   dl {
     margin: 0;
