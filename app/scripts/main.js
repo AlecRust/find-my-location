@@ -5,10 +5,12 @@
 'use strict';
 
 var map,
-    google;
+    google,
+    geocoder;
 
 // Initialise Google Map
 function initialize() {
+    
     var mapOptions = {
         backgroundColor: '#005b41',
         zoom: 8,
@@ -16,25 +18,33 @@ function initialize() {
             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
         }
     };
+    
     map = new google.maps.Map(document.getElementById('location-map-canvas'), mapOptions);
+    geocoder = new google.maps.Geocoder();
 
     // Try HTML5 geolocation
     if (navigator.geolocation) {
+        
+        // Browser supports Geolocation
         navigator.geolocation.getCurrentPosition(function (position) {
             
             // Remove loading message and hidden map intro from DOM
             $('.loading-message, .location-map-intro').remove();
             
+            // Get lat/lng of user
             var userPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
             // Configure info window
             var infoWindow = new google.maps.InfoWindow({
                 content: '<div class="info-window">' +
-                    '<h2>Here you are!</h2>' +
                     '<p><b>Lat:</b> ' + userPosition.lat() + '</p>' +
                     '<p><b>Lng:</b> ' + userPosition.lng() + '</p>' +
                     '</div>'
             });
+            
+            // Output lat/lng to console
+            console.log('Latitude: ' + userPosition.lat());
+            console.log('Longitude: ' + userPosition.lng());
 
             // Configure map marker
             var marker = new google.maps.Marker({
@@ -53,9 +63,30 @@ function initialize() {
                 ]
             }]);
 
-            // Open and zoom to info window on marker click
+            // Open info window on marker
+            infoWindow.open(map, marker);
+
+            // Reverse Geocode lat/lng
+            geocoder.geocode({ 'latLng': userPosition }, function (results, status) {
+                var $infoWindow = $('.info-window');
+                var userAddressFormatted = results[0].formatted_address;
+                if (status === google.maps.GeocoderStatus.OK) {
+                    // Append address to info window
+                    $infoWindow.append('<p><b>Adr:</b> ' + userAddressFormatted + '</p>');
+                    
+                    // Output address to console
+                    console.log('Address: ' + userAddressFormatted);
+                } else {
+                    // Append error message to info window
+                    $infoWindow.append('<p class="error">Address not available</b></p>');
+                    
+                    // Output geocode failure status to console
+                    console.log('Geocode failed: ' + status);
+                }
+            });
+
+            // Zoom to marker on click
             google.maps.event.addListener(marker, 'click', function () {
-                infoWindow.open(map, marker);
                 map.setCenter(userPosition);
                 map.setZoom(18);
             });
@@ -64,6 +95,7 @@ function initialize() {
             // Browser supports Geolocation, but user declined
             handleNoGeolocation(true);
         });
+        
     } else {
         // Browser doesn't support Geolocation
         handleNoGeolocation(false);
@@ -73,6 +105,9 @@ function initialize() {
 // Show error message info window
 function handleNoGeolocation(errorFlag) {
     var errorContent;
+
+    // Remove loading message and hidden map intro from DOM
+    $('.loading-message, .location-map-intro').remove();
     
     if (errorFlag) {
         errorContent = 'Allow location information to display it on this map';
@@ -83,7 +118,9 @@ function handleNoGeolocation(errorFlag) {
     var mapOptions = {
         map: map,
         position: new google.maps.LatLng(60, 105),
-        content: errorContent
+        content: '<div class="info-window">' +
+            '<p class="error"> ' + errorContent + '</p>' +
+            '</div>'
     };
 
     var infoWindow = new google.maps.InfoWindow(mapOptions);
