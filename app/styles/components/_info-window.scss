@@ -4,6 +4,19 @@
 
 .info-window {
   
+  dl {
+    margin: 0;
+  }
+  
+  dt {
+    font-weight: bold;
+    float: left;
+  }
+  
+  dd {
+    margin-left: 40px;
+  }
+  
   p {
     margin: 0;
   }

@@ -35,8 +35,10 @@ function initialize() {
             // Configure info window
             var infoWindow = new google.maps.InfoWindow({
                 content: '<div class="info-window">' +
-                    '<p><b>Lat:</b> ' + userPosition.lat() + '</p>' +
-                    '<p><b>Lng:</b> ' + userPosition.lng() + '</p>' +
+                    '<dl>' +
+                    '<dt>Lat:</dt><dd>' + userPosition.lat() + '</dd>' +
+                    '<dt>Lng:</dt><dd>' + userPosition.lng() + '</dd>' +
+                    '</dl>' +
                     '</div>'
             });
             
@@ -67,10 +69,11 @@ function initialize() {
             // Reverse Geocode lat/lng
             geocoder.geocode({ 'latLng': userPosition }, function (results, status) {
                 var $infoWindow = $('.info-window');
+                var $infoWindowContent = $('.info-window dl');
                 var userAddressFormatted = results[0].formatted_address;
                 if (status === google.maps.GeocoderStatus.OK) {
                     // Append address to info window
-                    $infoWindow.append('<p><b>Adr:</b> ' + userAddressFormatted + '</p>');
+                    $infoWindowContent.append('<dt>Adr:</dt><dd>' + userAddressFormatted + '</dd>');
                     
                     // Output address to console
                     console.log('Address: ' + userAddressFormatted);
