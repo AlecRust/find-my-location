@@ -115,16 +115,16 @@ function handleNoGeolocation(errorFlag) {
         errorContent = 'Your browser doesn\'t support Geolocation';
     }
 
-    var mapOptions = {
+    var infoWindowOptions = {
         map: map,
         position: defaultLatLng,
-        content: '<div class="info-window">' +
-            '<p class="error"> ' + errorContent + '</p>' +
+        content: '<div class="info-window-error">' +
+            '<p>' + errorContent + '</p>' +
             '</div>'
     };
 
-    var infoWindow = new google.maps.InfoWindow(mapOptions);
-    map.setCenter(mapOptions.position);
+    var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+    map.setCenter(infoWindowOptions.position);
 }
 
 // Asynchronously load Google Maps API

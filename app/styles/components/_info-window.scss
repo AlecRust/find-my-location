@@ -18,11 +18,16 @@
     margin-left: 40px;
   }
   
-  p {
-    margin: 0;
-  }
-  
   .error {
-    color: #c00000;
+    color: #a94442;
+  }
+}
+
+.info-window-error {
+
+  p {
+    font-weight: bold;
+    color: #a94442;
+    margin: 0;
   }
 }
