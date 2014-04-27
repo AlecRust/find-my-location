@@ -14,9 +14,7 @@ function initialize() {
     var mapOptions = {
         backgroundColor: '#005b41',
         zoom: 8,
-        mapTypeControlOptions: {
-            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-        }
+        mapTypeId: google.maps.MapTypeId.HYBRID
     };
     
     map = new google.maps.Map(document.getElementById('location-map-canvas'), mapOptions);
@@ -87,8 +85,9 @@ function initialize() {
 
             // Zoom to marker on click
             google.maps.event.addListener(marker, 'click', function () {
-                map.setCenter(userPosition);
-                map.setZoom(18);
+                map.panTo(userPosition);
+                map.setZoom(19);
+                map.setTilt(45);
             });
             
         }, function () {
