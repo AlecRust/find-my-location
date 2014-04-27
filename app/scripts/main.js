@@ -104,20 +104,21 @@ function initialize() {
 
 // Show error message info window
 function handleNoGeolocation(errorFlag) {
-    var errorContent;
+    var errorContent,
+        defaultLatLng = new google.maps.LatLng(52, -1);
 
     // Remove loading message and hidden map intro from DOM
     $('.loading-message, .location-map-intro').remove();
     
     if (errorFlag) {
-        errorContent = 'Allow location information to display it on this map';
+        errorContent = 'Please allow location information';
     } else {
         errorContent = 'Your browser doesn\'t support Geolocation';
     }
 
     var mapOptions = {
         map: map,
-        position: new google.maps.LatLng(60, 105),
+        position: defaultLatLng,
         content: '<div class="info-window">' +
             '<p class="error"> ' + errorContent + '</p>' +
             '</div>'
