@@ -129,11 +129,4 @@ function handleNoGeolocation(errorFlag) {
   map.setCenter(infoWindowOptions.position);
 }
 
-// Asynchronously load Google Maps API
-function loadScript() {
-  var script = document.createElement('script');
-  script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&' + 'callback=initialize';
-  document.body.appendChild(script);
-}
-
-window.onload = loadScript;
+google.maps.event.addDomListener(window, 'load', initialize);
