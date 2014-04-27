@@ -1,61 +1,61 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Find My Location</title>
-        <meta name="description" content="Uses the HTML5 Geolocation API to plot your location on a map.">
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="white">
-        <meta name="apple-mobile-web-app-title" content="FML">
-        <link rel="shortcut icon" href="/favicon.ico">
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-        <!-- build:css(.tmp) styles/main.css -->
-        <!-- bower:css -->
-        <link rel="stylesheet" href="../bower_components/normalize.css/normalize.css">
-        <!-- endbower -->
-        <link rel="stylesheet" href="styles/main.css">
-        <!-- endbuild -->
-    </head>
-    <body>
-        
-        <!--[if lt IE 10]>
-            <p class="alert">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        
-        <div class="location-map-intro visuallyhidden">
-            <h1>Find My Location</h1>
-            <p>Uses the HTML5 Geolocation API to plot your location on a map. <a href="https://github.com/AlecRust/find-my-location">View on GitHub</a></p>
-        </div>
-        
-        <noscript>
-            <p class="alert">You'll need JavaScript switched on to this site.</p>
-        </noscript>
-        
-        <div id="loading-message" class="loading-message">
-            <span class="loading-message-letter">L</span>
-            <span class="loading-message-letter">o</span>
-            <span class="loading-message-letter">a</span>
-            <span class="loading-message-letter">d</span>
-            <span class="loading-message-letter">i</span>
-            <span class="loading-message-letter">n</span>
-            <span class="loading-message-letter">g</span>
-        </div>
+  <head>
+    <meta charset="utf-8">
+    <title>Find My Location</title>
+    <meta name="description" content="Uses the HTML5 Geolocation API to plot your location on a map.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <meta name="apple-mobile-web-app-title" content="FML">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- build:css(.tmp) styles/main.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="../bower_components/normalize.css/normalize.css">
+    <!-- endbower -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body>
+      
+    <!--[if lt IE 10]>
+      <p class="alert">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    
+    <div class="location-map-intro visuallyhidden">
+      <h1>Find My Location</h1>
+      <p>Uses the HTML5 Geolocation API to plot your location on a map. <a href="https://github.com/AlecRust/find-my-location">View on GitHub</a></p>
+    </div>
+    
+    <noscript>
+      <p class="alert">You'll need JavaScript switched on to this site.</p>
+    </noscript>
+      
+    <div id="loading-message" class="loading-message">
+      <span class="loading-message-letter">L</span>
+      <span class="loading-message-letter">o</span>
+      <span class="loading-message-letter">a</span>
+      <span class="loading-message-letter">d</span>
+      <span class="loading-message-letter">i</span>
+      <span class="loading-message-letter">n</span>
+      <span class="loading-message-letter">g</span>
+    </div>
 
-        <div id="location-map" class="location-map"></div>
+    <div id="location-map" class="location-map"></div>
 
-        <!-- build:js({app,.tmp}) scripts/main.js -->
-        <script src="scripts/main.js"></script>
-        <!-- endbuild -->
-        
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-3217267-28');ga('send','pageview');
-        </script>
-        
-    </body>
+    <!-- build:js({app,.tmp}) scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+      
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='//www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-3217267-28');ga('send','pageview');
+    </script>
+      
+  </body>
 </html>
