@@ -36,7 +36,7 @@ function initialize() {
             // Configure info window
             var infoWindow = new google.maps.InfoWindow({
                 content: '<div class="info-window">' +
-                    '<dl>' +
+                    '<dl id="info-window-content">' +
                     '<dt>Lat:</dt><dd>' + userPosition.lat() + '</dd>' +
                     '<dt>Lng:</dt><dd>' + userPosition.lng() + '</dd>' +
                     '</dl>' +
@@ -69,7 +69,7 @@ function initialize() {
 
             // Reverse Geocode lat/lng
             geocoder.geocode({ 'latLng': userPosition }, function (results, status) {
-                var $infoWindowContent = $('.info-window dl');
+                var infoWindowContent = document.getElementById('info-window-content');
                 var userAddress;
                 var userAddressFormatted = results[0].formatted_address;
                 if (status === google.maps.GeocoderStatus.OK) {
@@ -79,9 +79,9 @@ function initialize() {
                     userAddress = '<span class="error">Street address not available</span>';
                     console.log('Geocode failed: ' + status);
                 }
-                
+
                 // Append address line to info window
-                $infoWindowContent.append('<dt>Adr:</dt><dd>' + userAddress + '</dd>');
+                infoWindowContent.innerHTML = infoWindowContent.innerHTML + '<dt>Adr:</dt><dd>' + userAddress + '</dd>';
             });
 
             // Zoom to marker on click
