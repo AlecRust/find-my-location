@@ -74,11 +74,17 @@ function initialize() {
         var infoWindowContent = document.getElementById('info-window-content');
         var addressResponse;
         var userAddressFormatted = results[0].formatted_address;
+        
         if (status === google.maps.GeocoderStatus.OK) {
-          addressResponse = userAddressFormatted;
-          console.log('Address: ' + userAddressFormatted);
+          if (results[0]) {
+            addressResponse = userAddressFormatted;
+            console.log('Address: ' + userAddressFormatted);
+          } else {
+            addressResponse = '<span class="error">Address not available</span>';
+            console.log('No address result');
+          }
         } else {
-          addressResponse = '<span class="error">Street address not available</span>';
+          addressResponse = '<span class="error">Geocode failed: ' + status + '</span>';
           console.log('Geocode failed: ' + status);
         }
 
@@ -96,11 +102,17 @@ function initialize() {
         var infoWindowContent = document.getElementById('info-window-content');
         var elevationResponse;
         var userElevationValue = results[0].elevation;
+
         if (status === google.maps.ElevationStatus.OK) {
-          elevationResponse = userElevationValue;
-          console.log('Elevation: ' + userElevationValue + ' meters');
+          if (results[0]) {
+            elevationResponse = userElevationValue;
+            console.log('Elevation: ' + userElevationValue + ' meters');
+          } else {
+            elevationResponse = '<span class="error">Elevation not available</span>';
+            console.log('No elevation result');
+          }
         } else {
-          elevationResponse = '<span class="error">Elevation not available</span>';
+          elevationResponse = '<span class="error">Elevation failed: ' + status + '</span>';
           console.log('Elevation failed: ' + status);
         }
 
