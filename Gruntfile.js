@@ -247,7 +247,7 @@ module.exports = function (grunt) {
       }
     },
 
-    // Sets up grunt-build-control
+    // Run grunt-build-control
     buildcontrol: {
       options: {
         dir: 'dist',

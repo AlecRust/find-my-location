@@ -6,7 +6,8 @@
 
 var map,
     google,
-    geocoder;
+    geocoder,
+    elevator;
 
 // Initialise Google Map
 function initialize() {
@@ -19,6 +20,7 @@ function initialize() {
 
   map = new google.maps.Map(document.getElementById('location-map'), mapOptions);
   geocoder = new google.maps.Geocoder();
+  elevator = new google.maps.ElevationService();
 
   // Try HTML5 geolocation
   if (navigator.geolocation) {
@@ -67,21 +69,43 @@ function initialize() {
       // Open info window on marker
       infoWindow.open(map, marker);
 
-      // Reverse Geocode lat/lng
+      // Reverse Geocode lat/lng for address
       geocoder.geocode({ 'latLng': userPosition }, function (results, status) {
         var infoWindowContent = document.getElementById('info-window-content');
-        var userAddress;
+        var addressResponse;
         var userAddressFormatted = results[0].formatted_address;
         if (status === google.maps.GeocoderStatus.OK) {
-          userAddress = userAddressFormatted;
+          addressResponse = userAddressFormatted;
           console.log('Address: ' + userAddressFormatted);
         } else {
-          userAddress = '<span class="error">Street address not available</span>';
+          addressResponse = '<span class="error">Street address not available</span>';
           console.log('Geocode failed: ' + status);
         }
 
-        // Append address line to info window
-        infoWindowContent.innerHTML = infoWindowContent.innerHTML + '<dt>Adr:</dt><dd>' + userAddress + '</dd>';
+        // Append to info window
+        infoWindowContent.innerHTML = infoWindowContent.innerHTML + '<dt>Adr:</dt><dd>' + addressResponse + '</dd>';
+      });
+
+      // Make user position a LocationElevationRequest object
+      var positionalRequest = {
+        'locations': [userPosition]
+      };
+
+      // Determine elevation
+      elevator.getElevationForLocations(positionalRequest, function (results, status) {
+        var infoWindowContent = document.getElementById('info-window-content');
+        var elevationResponse;
+        var userElevationValue = results[0].elevation;
+        if (status === google.maps.ElevationStatus.OK) {
+          elevationResponse = userElevationValue;
+          console.log('Elevation: ' + userElevationValue + ' meters');
+        } else {
+          elevationResponse = '<span class="error">Elevation not available</span>';
+          console.log('Elevation failed: ' + status);
+        }
+
+        // Append to info window
+        infoWindowContent.innerHTML = infoWindowContent.innerHTML + '<dt>Ele:</dt><dd>' + elevationResponse + ' meters</dd>';
       });
 
       // Zoom to marker on click
