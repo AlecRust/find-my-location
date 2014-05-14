@@ -1,8 +1,0 @@
-{
-  "name": "find-my-location",
-  "private": true,
-  "dependencies": {
-    "normalize.css": "~3.0.1"
-  },
-  "devDependencies": {}
-}
