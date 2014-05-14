@@ -1,5 +1,5 @@
 /*!
- * Basic usage of the HTML5 Geolocation API to plot user location on a map
+ * Uses the HTML5 Geolocation API to plot your location and information on a map
  */
 
 'use strict';
@@ -7,17 +7,20 @@
 var map,
     google,
     geocoder,
-    elevator;
+    elevator,
+    loadingMessage = document.getElementById('loading-message');
 
 // Initialise Google Map
 function initialize() {
 
+  // Set up map options
   var mapOptions = {
     backgroundColor: '#005b41',
     zoom: 8,
     mapTypeId: google.maps.MapTypeId.HYBRID
   };
 
+  // Initialise map, geocoder and elevator
   map = new google.maps.Map(document.getElementById('location-map'), mapOptions);
   geocoder = new google.maps.Geocoder();
   elevator = new google.maps.ElevationService();
@@ -29,11 +32,22 @@ function initialize() {
     navigator.geolocation.getCurrentPosition(function (position) {
 
       // Remove loading message
-      var loadingMessage = document.getElementById('loading-message');
       loadingMessage.parentNode.removeChild(loadingMessage);
 
       // Get lat/lng of user
       var userPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+      // Make user position a LocationElevationRequest object for elevation request
+      var elevationRequest = {
+        'locations': [userPosition]
+      };
+
+      // Set map center to user position
+      map.setCenter(userPosition);
+
+      // Output lat/lng to console
+      console.log('Latitude: ' + userPosition.lat());
+      console.log('Longitude: ' + userPosition.lng());
 
       // Configure info window
       var infoWindow = new google.maps.InfoWindow({
@@ -45,26 +59,12 @@ function initialize() {
                  '</div>'
       });
 
-      // Output lat/lng to console
-      console.log('Latitude: ' + userPosition.lat());
-      console.log('Longitude: ' + userPosition.lng());
-
       // Configure map marker
       var marker = new google.maps.Marker({
         map: map,
         position: userPosition,
         title: 'Click to zoom'
       });
-
-      // Set map center to user position
-      map.setCenter(userPosition);
-
-      // Set map hue colour
-      map.set('styles', [{
-        stylers: [
-          { hue: '#005b41' }
-        ]
-      }]);
 
       // Open info window on marker
       infoWindow.open(map, marker);
@@ -74,7 +74,7 @@ function initialize() {
         var infoWindowContent = document.getElementById('info-window-content');
         var addressResponse;
         var userAddressFormatted = results[0].formatted_address;
-        
+
         if (status === google.maps.GeocoderStatus.OK) {
           if (results[0]) {
             addressResponse = userAddressFormatted;
@@ -92,13 +92,8 @@ function initialize() {
         infoWindowContent.innerHTML = infoWindowContent.innerHTML + '<dt>Adr:</dt><dd>' + addressResponse + '</dd>';
       });
 
-      // Make user position a LocationElevationRequest object
-      var positionalRequest = {
-        'locations': [userPosition]
-      };
-
       // Determine elevation
-      elevator.getElevationForLocations(positionalRequest, function (results, status) {
+      elevator.getElevationForLocations(elevationRequest, function (results, status) {
         var infoWindowContent = document.getElementById('info-window-content');
         var elevationResponse;
         var userElevationValue = results[0].elevation;
@@ -144,7 +139,6 @@ function handleNoGeolocation(errorFlag) {
       defaultLatLng = new google.maps.LatLng(52, -1);
 
   // Remove loading message
-  var loadingMessage = document.getElementById('loading-message');
   loadingMessage.parentNode.removeChild(loadingMessage);
 
   if (errorFlag) {
