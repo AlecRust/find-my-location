@@ -101,7 +101,7 @@ function initialize() {
         if (status === google.maps.ElevationStatus.OK) {
           if (results[0]) {
             elevationResponse = userElevationValue;
-            console.log('Elevation: ' + userElevationValue + ' meters');
+            console.log('Elevation: ' + userElevationValue + ' metres');
           } else {
             elevationResponse = '<span class="error">Elevation not available</span>';
             console.log('No elevation result');
@@ -112,7 +112,7 @@ function initialize() {
         }
 
         // Append to info window
-        infoWindowContent.innerHTML = infoWindowContent.innerHTML + '<dt>Ele:</dt><dd>' + elevationResponse + ' meters</dd>';
+        infoWindowContent.innerHTML = infoWindowContent.innerHTML + '<dt>Ele:</dt><dd>' + elevationResponse + ' metres</dd>';
       });
 
       // Zoom to marker on click
