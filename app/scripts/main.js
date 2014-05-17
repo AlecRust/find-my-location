@@ -73,12 +73,12 @@ function initialize() {
       geocoder.geocode({ 'latLng': userPosition }, function (results, status) {
         var infoWindowContent = document.getElementById('info-window-content');
         var addressResponse;
-        var userAddressFormatted = results[0].formatted_address;
+        var userAddress = results[0].formatted_address;
 
         if (status === google.maps.GeocoderStatus.OK) {
           if (results[0]) {
-            addressResponse = userAddressFormatted;
-            console.log('Address: ' + userAddressFormatted);
+            addressResponse = userAddress;
+            console.log('Address: ' + userAddress);
           } else {
             addressResponse = '<span class="error">Address not available</span>';
             console.log('No address result');
@@ -96,12 +96,12 @@ function initialize() {
       elevator.getElevationForLocations(elevationRequest, function (results, status) {
         var infoWindowContent = document.getElementById('info-window-content');
         var elevationResponse;
-        var userElevationValue = results[0].elevation;
+        var userElevation = results[0].elevation.toFixed(4);
 
         if (status === google.maps.ElevationStatus.OK) {
           if (results[0]) {
-            elevationResponse = userElevationValue;
-            console.log('Elevation: ' + userElevationValue + ' metres');
+            elevationResponse = userElevation;
+            console.log('Elevation: ' + userElevation + ' metres');
           } else {
             elevationResponse = '<span class="error">Elevation not available</span>';
             console.log('No elevation result');
